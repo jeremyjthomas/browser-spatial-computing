@@ -12,6 +12,8 @@ Before proposing a foundation change:
 6. Run `python3 -m unittest discover -s tests -v`.
 7. Include observable acceptance evidence for new normative behavior.
 
+If a change affects repository workflow, AI loading, visual-profile guidance, or the canonical paths agents should use, update the relevant `AGENTS.md`, `CLAUDE.md`, `SKILL.md`, or `DESIGN.md` entry point and run `python3 scripts/validate_agent_docs.py`.
+
 Generated knowledge files should never be edited directly. Static evaluator patterns must remain conservative, identify their confidence, map to an existing normative rule, and avoid claiming runtime proof from source text alone.
 
 Please do not include credentials, customer information, proprietary source, private conversation transcripts, or evidence you do not have permission to publish.

@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.1 — 2026-07-20
+
+- Added shared `AGENTS.md` and `CLAUDE.md` repository instructions.
+- Added a portable `SKILL.md` for explanation, research, design, build, resume, and evaluation tasks.
+- Added an evidence-bound `DESIGN.md` for the INTO visual and motion profile without inventing unresolved host tokens.
+- Added automated validation for AI entry-point completeness and cross-references.
+
 ## 0.1.0 — 2026-07-20
 
 - Published the complete Spatial Environments browser principles book and AI-first foundation v3.1.

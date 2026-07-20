@@ -14,6 +14,7 @@ This repository includes:
 - a compact retrieval index for exact lookup, concept search, filters, neighborhoods, and semantic paths;
 - a manifest-driven principles evaluator with conservative source diagnostics;
 - three runtime levers—visual richness, active-frame capacity, and loading horizon—with efficient, balanced, and cinematic presets;
+- shared Codex, Claude Code, portable skill, and design-system entry points;
 - schemas, examples, tests, and continuous integrity checks.
 
 ## Start here
@@ -39,10 +40,30 @@ spatial-foundation evaluate examples/implementation-manifest.example.json
 
 All commands emit JSON so an agent can consume the result directly.
 
+## AI entry points
+
+Agents should begin with the instruction file their environment loads automatically, then use the shared portable skill:
+
+| Agent or task | Start with | Role |
+|---|---|---|
+| OpenAI Codex | `AGENTS.md` | Repository authority, workflow, safety, and definition of done |
+| Claude Code | `CLAUDE.md` | Imports the shared contract and adds a bounded-loading strategy |
+| Any capable AI | `SKILL.md` | Tool-neutral modes, retrieval, reasoning, build, and evaluation protocol |
+| UI generation or review | `DESIGN.md` | AI-readable visual profile, depth/motion tokens, components, and anti-patterns |
+
+The instruction files deliberately point agents to graph search before the full 342KB foundation. Validate the entry-point contract with:
+
+```bash
+python3 scripts/validate_agent_docs.py
+```
+
 ## Which artifact should an AI use?
 
 | Need | Artifact |
 |---|---|
+| Operate safely in the repository | `AGENTS.md` or `CLAUDE.md` |
+| Apply the framework with any AI | `SKILL.md` |
+| Generate or review visual UI | `DESIGN.md` |
 | Understand or build the system | `foundation/spatial-environments-ai-foundation-v3.1.json` |
 | Validate the foundation shape | `foundation/spatial-environments-ai-foundation-v3.1.schema.json` |
 | Resume a multi-session build | `foundation/spatial-environments-ai-build-state-v1.template.json` |
@@ -89,6 +110,10 @@ These are independent controls, not a single quality slider. A user may want ric
 ## Repository map
 
 ```text
+AGENTS.md    shared repository contract for Codex and other coding agents
+CLAUDE.md    Claude Code adapter importing the shared contract
+SKILL.md     portable task, retrieval, build, and evaluation workflow
+DESIGN.md    AI-readable INTO visual and motion profile
 foundation/  canonical AI contract, schema, and resumable build state
 knowledge/   generated graph and compact retrieval index
 docs/        human principles, architecture, evaluator, and PDF book
@@ -96,7 +121,7 @@ schemas/     evaluator and graph interchange contracts
 examples/    implementation manifest and generated evaluation report
 src/         dependency-free graph and evaluation library
 scripts/     direct command-line entry points
-tests/       graph, retrieval, evaluator, and diagnostic fixtures
+tests/       graph, retrieval, evaluator, agent-contract, and diagnostic fixtures
 ```
 
 ## Design stance
