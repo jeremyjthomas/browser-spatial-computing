@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "browser-spatial-computing"
+version = "0.1.0"
+description = "An AI-first foundation, knowledge graph, and evaluator for spatial computing in the browser."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{name = "Jeremy Thomas"}]
+dependencies = []
+
+[project.optional-dependencies]
+validation = ["jsonschema>=4.21,<5"]
+
+[project.scripts]
+spatial-foundation = "spatial_foundation.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

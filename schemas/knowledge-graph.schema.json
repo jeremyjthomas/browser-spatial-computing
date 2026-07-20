@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jeremyjthomas/browser-spatial-computing/schemas/knowledge-graph.schema.json",
+  "title": "Spatial Foundation Knowledge Graph",
+  "type": "object",
+  "required": ["format", "version", "metadata", "nodes", "edges"],
+  "properties": {
+    "format": {"const": "into.spatial.knowledge-graph"},
+    "version": {"type": "string"},
+    "metadata": {"type": "object"},
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "label", "summary", "tags", "source_refs"],
+        "properties": {
+          "id": {"type": "string"},
+          "type": {"type": "string"},
+          "label": {"type": "string"},
+          "summary": {"type": "string"},
+          "tags": {"type": "array", "items": {"type": "string"}},
+          "source_refs": {"type": "array", "items": {"type": "string"}},
+          "data": {"type": "object"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "source", "predicate", "target", "weight", "source_refs"],
+        "properties": {
+          "id": {"type": "string"},
+          "source": {"type": "string"},
+          "predicate": {"type": "string"},
+          "target": {"type": "string"},
+          "weight": {"type": "number"},
+          "source_refs": {"type": "array", "items": {"type": "string"}}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

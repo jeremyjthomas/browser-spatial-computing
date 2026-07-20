@@ -1,0 +1,86 @@
+{
+  "$schema": "urn:into:spatial-environments:build-state:v1",
+  "foundation": {
+    "artifact_id": "into.spatial.browser.ai-foundation",
+    "version": "3.1-ai.1",
+    "sha256": "119710282d9bc8922552fe79f9be3e26b9a8f7f800cdde635ab05ed7b6f90c53"
+  },
+  "implementation": {
+    "name": "REPLACE_ME",
+    "repository": "REPLACE_ME",
+    "branch": "REPLACE_ME",
+    "revision": "REPLACE_ME",
+    "stack": [],
+    "baseline_hardware": "REPLACE_ME",
+    "supported_browsers": []
+  },
+  "current_checkpoint": "CP-00",
+  "capability_status": [
+    {
+      "capability_id": "CP-00",
+      "status": "not_started",
+      "rule_ids": [],
+      "evidence_ids": []
+    },
+    {
+      "capability_id": "CP-01",
+      "status": "not_started",
+      "rule_ids": [],
+      "evidence_ids": []
+    },
+    {
+      "capability_id": "CP-02",
+      "status": "not_started",
+      "rule_ids": [],
+      "evidence_ids": []
+    },
+    {
+      "capability_id": "CP-03",
+      "status": "not_started",
+      "rule_ids": [],
+      "evidence_ids": []
+    },
+    {
+      "capability_id": "CP-04",
+      "status": "not_started",
+      "rule_ids": [],
+      "evidence_ids": []
+    },
+    {
+      "capability_id": "CP-05",
+      "status": "not_started",
+      "rule_ids": [],
+      "evidence_ids": []
+    },
+    {
+      "capability_id": "CP-06",
+      "status": "not_started",
+      "rule_ids": [],
+      "evidence_ids": []
+    },
+    {
+      "capability_id": "CP-07",
+      "status": "not_started",
+      "rule_ids": [],
+      "evidence_ids": []
+    }
+  ],
+  "decisions": [],
+  "evidence": [],
+  "open_findings": [],
+  "next_actions": [
+    {
+      "id": "NEXT-001",
+      "action": "Complete CP-00 scope and baseline manifest.",
+      "owner": "unassigned",
+      "blocked_by": []
+    }
+  ],
+  "handoff": {
+    "last_updated": "2026-07-19T00:00:00-06:00",
+    "last_actor": "template",
+    "resume_from": "Resolve implementation identity and complete CP-00.",
+    "do_not_repeat": [],
+    "known_environment_constraints": []
+  }
+}

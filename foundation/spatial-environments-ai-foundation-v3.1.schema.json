@@ -1,0 +1,192 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:into:spatial-environments:ai-foundation-schema:v3.1",
+  "title": "INTO Spatial Environments AI Foundation",
+  "type": "object",
+  "required": [
+    "artifact",
+    "scope",
+    "agent_operating_contract",
+    "normative_vocabulary",
+    "foundation_layers",
+    "framework_kernel",
+    "domain_model",
+    "spatial_grammar",
+    "ai_collaboration_contract",
+    "integration_contract",
+    "browser_runtime_contract",
+    "normative_rule_registry",
+    "conformance",
+    "review_contract",
+    "build_contract",
+    "versioning_and_compatibility",
+    "open_questions",
+    "source_book",
+    "reference_index"
+  ],
+  "properties": {
+    "artifact": {
+      "type": "object",
+      "required": [
+        "id",
+        "kind",
+        "version",
+        "source_version",
+        "integrity"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "kind": {
+          "const": "ai_operational_foundation"
+        },
+        "version": {
+          "type": "string"
+        },
+        "source_version": {
+          "type": "string"
+        },
+        "integrity": {
+          "type": "object",
+          "required": [
+            "source_sha256",
+            "principle_count",
+            "source_section_count"
+          ]
+        }
+      }
+    },
+    "scope": {
+      "type": "object"
+    },
+    "agent_operating_contract": {
+      "type": "object"
+    },
+    "normative_vocabulary": {
+      "type": "object"
+    },
+    "foundation_layers": {
+      "type": "array",
+      "minItems": 4
+    },
+    "framework_kernel": {
+      "type": "array",
+      "minItems": 9
+    },
+    "domain_model": {
+      "type": "object"
+    },
+    "spatial_grammar": {
+      "type": "object"
+    },
+    "ai_collaboration_contract": {
+      "type": "object"
+    },
+    "integration_contract": {
+      "type": "object"
+    },
+    "browser_runtime_contract": {
+      "type": "object"
+    },
+    "normative_rule_registry": {
+      "type": "array",
+      "minItems": 50,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "level",
+          "category",
+          "statement",
+          "source_principle_ids",
+          "validation",
+          "severity_if_violated"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "level": {
+            "enum": [
+              "MUST",
+              "MUST_NOT",
+              "SHOULD",
+              "SHOULD_NOT",
+              "MAY"
+            ]
+          },
+          "category": {
+            "type": "string"
+          },
+          "statement": {
+            "type": "string",
+            "minLength": 8
+          },
+          "source_principle_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "validation": {
+            "type": "string"
+          },
+          "severity_if_violated": {
+            "enum": [
+              "critical",
+              "high",
+              "medium",
+              "low"
+            ]
+          }
+        }
+      }
+    },
+    "conformance": {
+      "type": "object"
+    },
+    "review_contract": {
+      "type": "object"
+    },
+    "build_contract": {
+      "type": "object"
+    },
+    "versioning_and_compatibility": {
+      "type": "object"
+    },
+    "open_questions": {
+      "type": "array"
+    },
+    "source_book": {
+      "type": "object",
+      "required": [
+        "principle_index",
+        "sections"
+      ],
+      "properties": {
+        "principle_index": {
+          "type": "array",
+          "minItems": 71
+        },
+        "sections": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "level",
+              "title",
+              "line_start",
+              "line_end",
+              "source_markdown"
+            ]
+          }
+        }
+      }
+    },
+    "reference_index": {
+      "type": "array"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "$schema": "../schemas/implementation-manifest.schema.json",
+  "subject": {
+    "name": "Example spatial operations room",
+    "version_or_revision": "example-0.1.0"
+  },
+  "claimed_conformance_classes": [
+    "runtime_performance_capacity"
+  ],
+  "current_checkpoint": "CP-06",
+  "evidence": [
+    {
+      "id": "EV-PERF-TRACE-001",
+      "kind": "performance_trace",
+      "location": "artifacts/idle-trace.json",
+      "summary": "A reviewed trace shows requestAnimationFrame continuing after the scene settles.",
+      "status": "verified"
+    },
+    {
+      "id": "EV-CAPACITY-TEST-001",
+      "kind": "automated_test",
+      "location": "tests/frame-capacity.test.ts",
+      "summary": "Balanced mode keeps no more than eight fully live frames.",
+      "status": "verified"
+    }
+  ],
+  "rule_results": [
+    {
+      "rule_id": "RUNTIME-008",
+      "status": "fail",
+      "evidence_ids": ["EV-PERF-TRACE-001"],
+      "notes": "The render loop continues while the room is idle."
+    },
+    {
+      "rule_id": "RUNTIME-009",
+      "status": "pass",
+      "evidence_ids": ["EV-CAPACITY-TEST-001"],
+      "notes": "Active-frame capacity is enforced for all three presets."
+    }
+  ],
+  "acceptance_test_results": []
+}

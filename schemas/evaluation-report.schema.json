@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jeremyjthomas/browser-spatial-computing/schemas/evaluation-report.schema.json",
+  "title": "Spatial Foundation Evaluation Report",
+  "type": "object",
+  "required": [
+    "foundation_version", "subject", "claimed_conformance_classes", "verdict", "summary",
+    "coverage", "finding_counts", "findings", "passed_rule_ids", "passed_acceptance_test_ids",
+    "unverified_rule_ids", "unverified_acceptance_test_ids", "evidence_gaps", "static_scan"
+  ],
+  "properties": {
+    "foundation_version": {"type": "string"},
+    "subject": {
+      "type": "object",
+      "required": ["name", "version_or_revision", "evidence_reviewed"],
+      "properties": {
+        "name": {"type": "string"},
+        "version_or_revision": {"type": "string"},
+        "evidence_reviewed": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "claimed_conformance_classes": {"type": "array", "items": {"type": "string"}},
+    "verdict": {"enum": ["conformant", "conformant_with_conditions", "insufficient_evidence", "not_conformant"]},
+    "summary": {"type": "string"},
+    "coverage": {
+      "type": "object",
+      "required": ["required_rule_count", "required_test_count", "verified_rule_count", "verified_test_count", "fraction"],
+      "properties": {
+        "required_rule_count": {"type": "integer", "minimum": 0},
+        "required_test_count": {"type": "integer", "minimum": 0},
+        "verified_rule_count": {"type": "integer", "minimum": 0},
+        "verified_test_count": {"type": "integer", "minimum": 0},
+        "fraction": {"type": "number", "minimum": 0, "maximum": 1}
+      },
+      "additionalProperties": false
+    },
+    "finding_counts": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+    "findings": {"type": "array", "items": {"$ref": "#/$defs/finding"}},
+    "passed_rule_ids": {"type": "array", "items": {"type": "string"}},
+    "passed_acceptance_test_ids": {"type": "array", "items": {"type": "string"}},
+    "unverified_rule_ids": {"type": "array", "items": {"type": "string"}},
+    "unverified_acceptance_test_ids": {"type": "array", "items": {"type": "string"}},
+    "evidence_gaps": {"type": "array", "items": {"type": "string"}},
+    "static_scan": {"type": ["object", "null"]},
+    "recommended_next_checkpoint": {"type": ["string", "null"]}
+  },
+  "$defs": {
+    "finding": {
+      "type": "object",
+      "required": ["id", "rule_id", "severity", "finding", "why_it_matters", "evidence", "recommended_fix", "confirmed", "confidence", "finding_type"],
+      "properties": {
+        "id": {"type": "string"},
+        "rule_id": {"type": "string"},
+        "severity": {"enum": ["critical", "high", "medium", "low"]},
+        "finding": {"type": "string"},
+        "why_it_matters": {"type": "string"},
+        "evidence": {"type": "array", "items": {"type": "string"}},
+        "recommended_fix": {"type": "string"},
+        "confirmed": {"type": "boolean"},
+        "confidence": {"enum": ["high", "medium", "low"]},
+        "finding_type": {"enum": ["rule_result", "static_signal"]}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

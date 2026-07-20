@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jeremyjthomas/browser-spatial-computing/schemas/implementation-manifest.schema.json",
+  "title": "Spatial Foundation Implementation Manifest",
+  "type": "object",
+  "required": ["subject", "claimed_conformance_classes", "evidence", "rule_results", "acceptance_test_results"],
+  "properties": {
+    "$schema": {"type": "string"},
+    "subject": {
+      "type": "object",
+      "required": ["name", "version_or_revision"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "version_or_revision": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "claimed_conformance_classes": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": ["core_spatial", "collaborative_spatial", "agentic_spatial", "into_visual_profile", "runtime_performance_capacity"]
+      }
+    },
+    "current_checkpoint": {"type": ["string", "null"]},
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "kind", "location", "summary", "status"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[A-Za-z0-9._:-]+$"},
+          "kind": {"type": "string", "minLength": 1},
+          "location": {"type": "string", "minLength": 1},
+          "summary": {"type": "string", "minLength": 1},
+          "status": {"enum": ["verified", "unverified"]}
+        },
+        "additionalProperties": false
+      }
+    },
+    "rule_results": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/ruleResult"}
+    },
+    "acceptance_test_results": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/testResult"}
+    }
+  },
+  "$defs": {
+    "resultBase": {
+      "type": "object",
+      "required": ["status", "evidence_ids"],
+      "properties": {
+        "status": {"enum": ["pass", "fail", "unverified", "not_applicable"]},
+        "evidence_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+        "notes": {"type": "string"}
+      }
+    },
+    "ruleResult": {
+      "allOf": [
+        {"$ref": "#/$defs/resultBase"},
+        {"type": "object", "required": ["rule_id"], "properties": {"rule_id": {"type": "string"}}}
+      ],
+      "unevaluatedProperties": false
+    },
+    "testResult": {
+      "allOf": [
+        {"$ref": "#/$defs/resultBase"},
+        {"type": "object", "required": ["test_id"], "properties": {"test_id": {"type": "string"}}}
+      ],
+      "unevaluatedProperties": false
+    }
+  },
+  "additionalProperties": false
+}

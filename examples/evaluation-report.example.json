@@ -1,0 +1,348 @@
+{
+  "foundation_version": "3.1-ai.1",
+  "subject": {
+    "name": "Example spatial operations room",
+    "version_or_revision": "example-0.1.0",
+    "evidence_reviewed": [
+      "artifacts/idle-trace.json",
+      "tests/frame-capacity.test.ts",
+      "static_scan:tests/fixtures/problematic_runtime"
+    ]
+  },
+  "claimed_conformance_classes": [
+    "runtime_performance_capacity"
+  ],
+  "verdict": "not_conformant",
+  "summary": "Not Conformant: 1/71 required checks have verified evidence; 1 confirmed finding(s), 5 static signal(s), and 69 evidence gap(s).",
+  "coverage": {
+    "required_rule_count": 56,
+    "required_test_count": 15,
+    "verified_rule_count": 1,
+    "verified_test_count": 0,
+    "fraction": 0.0141
+  },
+  "finding_counts": {
+    "high": 4,
+    "medium": 2
+  },
+  "findings": [
+    {
+      "id": "F-001",
+      "rule_id": "RUNTIME-008",
+      "severity": "high",
+      "finding": "The render loop continues while the room is idle.",
+      "why_it_matters": "The settled environment must request zero animation frames and own no Canvas, WebGL, media, or ambient rendering loop.",
+      "evidence": [
+        "EV-PERF-TRACE-001"
+      ],
+      "recommended_fix": "Record a settled performance trace and count requested frames and timers.",
+      "confirmed": true,
+      "confidence": "high",
+      "finding_type": "rule_result"
+    },
+    {
+      "id": "F-002",
+      "rule_id": "RUNTIME-008",
+      "severity": "high",
+      "finding": "Possible perpetual requestAnimationFrame loop",
+      "why_it_matters": "A settled editor-like spatial surface should return to zero optional rendering work.",
+      "evidence": [
+        "app.js:8: requestAnimationFrame(animate)"
+      ],
+      "recommended_fix": "Make rendering invalidation-driven, prove a settlement stop, and add an idle trace test.",
+      "confirmed": false,
+      "confidence": "medium",
+      "finding_type": "static_signal"
+    },
+    {
+      "id": "F-003",
+      "rule_id": "RUNTIME-007",
+      "severity": "medium",
+      "finding": "Three.js appears in a static import path",
+      "why_it_matters": "The default core should not pay the parsing, memory, and initialization cost of optional volumetric rendering.",
+      "evidence": [
+        "app.js:1: from \"three\""
+      ],
+      "recommended_fix": "Move Three.js behind a dynamic import reached only by a requested volumetric projection.",
+      "confirmed": false,
+      "confidence": "high",
+      "finding_type": "static_signal"
+    },
+    {
+      "id": "F-004",
+      "rule_id": "RUNTIME-016",
+      "severity": "high",
+      "finding": "WebGL pixel ratio appears to use the full device pixel ratio without a visible cap",
+      "why_it_matters": "High-density displays can multiply drawing-buffer pixels and thermal cost far beyond the interaction budget.",
+      "evidence": [
+        "app.js:4: setPixelRatio(window.devicePixelRatio)"
+      ],
+      "recommended_fix": "Cap physical drawing-buffer pixels or clamp pixel ratio against an explicit budget.",
+      "confirmed": false,
+      "confidence": "high",
+      "finding_type": "static_signal"
+    },
+    {
+      "id": "F-005",
+      "rule_id": "RUNTIME-003",
+      "severity": "medium",
+      "finding": "Blur filters and preserve-3d occur in the same stylesheet",
+      "why_it_matters": "CSS grouping properties can flatten a preserved 3D subtree depending on where they are applied.",
+      "evidence": [
+        "styles.css"
+      ],
+      "recommended_fix": "Separate optics from transform-preservation boundaries and add a cross-browser flattening fixture.",
+      "confirmed": false,
+      "confidence": "medium",
+      "finding_type": "static_signal"
+    },
+    {
+      "id": "F-006",
+      "rule_id": "CONST-025",
+      "severity": "high",
+      "finding": "CSS motion exists but no prefers-reduced-motion handling was found",
+      "why_it_matters": "The spatial grammar requires an equivalent comfortable projection, not mandatory travel or ambient motion.",
+      "evidence": [
+        "Scanned 2 supported source files under tests/fixtures/problematic_runtime"
+      ],
+      "recommended_fix": "Add reduced-motion behavior that removes travel, blur animation, tilt, and ambient loops while preserving navigation meaning.",
+      "confirmed": false,
+      "confidence": "medium",
+      "finding_type": "static_signal"
+    }
+  ],
+  "passed_rule_ids": [
+    "RUNTIME-009"
+  ],
+  "passed_acceptance_test_ids": [],
+  "unverified_rule_ids": [
+    "CONF-001",
+    "CONST-026",
+    "NEVER-001",
+    "NEVER-002",
+    "NEVER-003",
+    "NEVER-004",
+    "NEVER-005",
+    "NEVER-006",
+    "NEVER-007",
+    "NEVER-008",
+    "NEVER-009",
+    "NEVER-010",
+    "NEVER-011",
+    "NEVER-012",
+    "NEVER-013",
+    "NEVER-014",
+    "NEVER-015",
+    "NEVER-016",
+    "NEVER-017",
+    "NEVER-018",
+    "NEVER-019",
+    "NEVER-020",
+    "NEVER-021",
+    "NEVER-022",
+    "NEVER-023",
+    "NEVER-024",
+    "NEVER-025",
+    "NEVER-026",
+    "NEVER-027",
+    "NEVER-028",
+    "NEVER-029",
+    "NEVER-030",
+    "NEVER-031",
+    "NEVER-032",
+    "NEVER-033",
+    "NEVER-034",
+    "NEVER-035",
+    "NEVER-036",
+    "NEVER-037",
+    "NEVER-038",
+    "NEVER-039",
+    "NEVER-040",
+    "NEVER-041",
+    "NEVER-042",
+    "NEVER-043",
+    "RUNTIME-004",
+    "RUNTIME-010",
+    "RUNTIME-011",
+    "RUNTIME-012",
+    "RUNTIME-013",
+    "RUNTIME-014",
+    "RUNTIME-015",
+    "RUNTIME-016",
+    "RUNTIME-017"
+  ],
+  "unverified_acceptance_test_ids": [
+    "AT-PERFORMANCE-01",
+    "AT-PERFORMANCE-02",
+    "AT-PERFORMANCE-03",
+    "AT-PERFORMANCE-04",
+    "AT-PERFORMANCE-05",
+    "AT-PERFORMANCE-06",
+    "AT-PERFORMANCE-07",
+    "AT-PERFORMANCE-08",
+    "AT-PERFORMANCE-09",
+    "AT-PERFORMANCE-10",
+    "AT-PERFORMANCE-11",
+    "AT-PERFORMANCE-12",
+    "AT-PERFORMANCE-13",
+    "AT-PERFORMANCE-14",
+    "AT-PERFORMANCE-15"
+  ],
+  "evidence_gaps": [
+    "CONF-001: no verified rule result",
+    "CONST-026: no verified rule result",
+    "NEVER-001: no verified rule result",
+    "NEVER-002: no verified rule result",
+    "NEVER-003: no verified rule result",
+    "NEVER-004: no verified rule result",
+    "NEVER-005: no verified rule result",
+    "NEVER-006: no verified rule result",
+    "NEVER-007: no verified rule result",
+    "NEVER-008: no verified rule result",
+    "NEVER-009: no verified rule result",
+    "NEVER-010: no verified rule result",
+    "NEVER-011: no verified rule result",
+    "NEVER-012: no verified rule result",
+    "NEVER-013: no verified rule result",
+    "NEVER-014: no verified rule result",
+    "NEVER-015: no verified rule result",
+    "NEVER-016: no verified rule result",
+    "NEVER-017: no verified rule result",
+    "NEVER-018: no verified rule result",
+    "NEVER-019: no verified rule result",
+    "NEVER-020: no verified rule result",
+    "NEVER-021: no verified rule result",
+    "NEVER-022: no verified rule result",
+    "NEVER-023: no verified rule result",
+    "NEVER-024: no verified rule result",
+    "NEVER-025: no verified rule result",
+    "NEVER-026: no verified rule result",
+    "NEVER-027: no verified rule result",
+    "NEVER-028: no verified rule result",
+    "NEVER-029: no verified rule result",
+    "NEVER-030: no verified rule result",
+    "NEVER-031: no verified rule result",
+    "NEVER-032: no verified rule result",
+    "NEVER-033: no verified rule result",
+    "NEVER-034: no verified rule result",
+    "NEVER-035: no verified rule result",
+    "NEVER-036: no verified rule result",
+    "NEVER-037: no verified rule result",
+    "NEVER-038: no verified rule result",
+    "NEVER-039: no verified rule result",
+    "NEVER-040: no verified rule result",
+    "NEVER-041: no verified rule result",
+    "NEVER-042: no verified rule result",
+    "NEVER-043: no verified rule result",
+    "RUNTIME-004: no verified rule result",
+    "RUNTIME-010: no verified rule result",
+    "RUNTIME-011: no verified rule result",
+    "RUNTIME-012: no verified rule result",
+    "RUNTIME-013: no verified rule result",
+    "RUNTIME-014: no verified rule result",
+    "RUNTIME-015: no verified rule result",
+    "RUNTIME-016: no verified rule result",
+    "RUNTIME-017: no verified rule result",
+    "AT-PERFORMANCE-01: no verified acceptance-test result",
+    "AT-PERFORMANCE-02: no verified acceptance-test result",
+    "AT-PERFORMANCE-03: no verified acceptance-test result",
+    "AT-PERFORMANCE-04: no verified acceptance-test result",
+    "AT-PERFORMANCE-05: no verified acceptance-test result",
+    "AT-PERFORMANCE-06: no verified acceptance-test result",
+    "AT-PERFORMANCE-07: no verified acceptance-test result",
+    "AT-PERFORMANCE-08: no verified acceptance-test result",
+    "AT-PERFORMANCE-09: no verified acceptance-test result",
+    "AT-PERFORMANCE-10: no verified acceptance-test result",
+    "AT-PERFORMANCE-11: no verified acceptance-test result",
+    "AT-PERFORMANCE-12: no verified acceptance-test result",
+    "AT-PERFORMANCE-13: no verified acceptance-test result",
+    "AT-PERFORMANCE-14: no verified acceptance-test result",
+    "AT-PERFORMANCE-15: no verified acceptance-test result"
+  ],
+  "static_scan": {
+    "root": "tests/fixtures/problematic_runtime",
+    "scanned_files": 2,
+    "diagnostic_count": 5,
+    "diagnostics_by_rule": {
+      "CONST-025": 1,
+      "RUNTIME-003": 1,
+      "RUNTIME-007": 1,
+      "RUNTIME-008": 1,
+      "RUNTIME-016": 1
+    },
+    "diagnostics": [
+      {
+        "id": "STATIC-RAF-LOOP-0002-01",
+        "rule_id": "RUNTIME-008",
+        "severity": "high",
+        "finding": "Possible perpetual requestAnimationFrame loop",
+        "why_it_matters": "A settled editor-like spatial surface should return to zero optional rendering work.",
+        "evidence": [
+          "app.js:8: requestAnimationFrame(animate)"
+        ],
+        "recommended_fix": "Make rendering invalidation-driven, prove a settlement stop, and add an idle trace test.",
+        "confirmed": false,
+        "confidence": "medium",
+        "finding_type": "static_signal"
+      },
+      {
+        "id": "STATIC-THREE-IMPORT-0002-01",
+        "rule_id": "RUNTIME-007",
+        "severity": "medium",
+        "finding": "Three.js appears in a static import path",
+        "why_it_matters": "The default core should not pay the parsing, memory, and initialization cost of optional volumetric rendering.",
+        "evidence": [
+          "app.js:1: from \"three\""
+        ],
+        "recommended_fix": "Move Three.js behind a dynamic import reached only by a requested volumetric projection.",
+        "confirmed": false,
+        "confidence": "high",
+        "finding_type": "static_signal"
+      },
+      {
+        "id": "STATIC-UNCAPPED-DPR-0002-01",
+        "rule_id": "RUNTIME-016",
+        "severity": "high",
+        "finding": "WebGL pixel ratio appears to use the full device pixel ratio without a visible cap",
+        "why_it_matters": "High-density displays can multiply drawing-buffer pixels and thermal cost far beyond the interaction budget.",
+        "evidence": [
+          "app.js:4: setPixelRatio(window.devicePixelRatio)"
+        ],
+        "recommended_fix": "Cap physical drawing-buffer pixels or clamp pixel ratio against an explicit budget.",
+        "confirmed": false,
+        "confidence": "high",
+        "finding_type": "static_signal"
+      },
+      {
+        "id": "STATIC-FLATTEN-0004",
+        "rule_id": "RUNTIME-003",
+        "severity": "medium",
+        "finding": "Blur filters and preserve-3d occur in the same stylesheet",
+        "why_it_matters": "CSS grouping properties can flatten a preserved 3D subtree depending on where they are applied.",
+        "evidence": [
+          "styles.css"
+        ],
+        "recommended_fix": "Separate optics from transform-preservation boundaries and add a cross-browser flattening fixture.",
+        "confirmed": false,
+        "confidence": "medium",
+        "finding_type": "static_signal"
+      },
+      {
+        "id": "STATIC-REDUCED-MOTION-001",
+        "rule_id": "CONST-025",
+        "severity": "high",
+        "finding": "CSS motion exists but no prefers-reduced-motion handling was found",
+        "why_it_matters": "The spatial grammar requires an equivalent comfortable projection, not mandatory travel or ambient motion.",
+        "evidence": [
+          "Scanned 2 supported source files under tests/fixtures/problematic_runtime"
+        ],
+        "recommended_fix": "Add reduced-motion behavior that removes travel, blur animation, tilt, and ambient loops while preserving navigation meaning.",
+        "confirmed": false,
+        "confidence": "medium",
+        "finding_type": "static_signal"
+      }
+    ],
+    "disclaimer": "Static diagnostics are conservative signals. They require review and do not prove runtime failure or conformance by themselves."
+  },
+  "recommended_next_checkpoint": "CP-06"
+}

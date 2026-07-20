@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jeremyjthomas/browser-spatial-computing/schemas/retrieval-index.schema.json",
+  "title": "Spatial Foundation Retrieval Index",
+  "type": "object",
+  "required": ["format", "version", "graph_version", "node_count", "edge_count", "exact_id", "terms", "tags", "types", "outgoing", "incoming"],
+  "properties": {
+    "format": {"const": "into.spatial.retrieval-index"},
+    "version": {"type": "string"},
+    "graph_version": {"type": "string"},
+    "node_count": {"type": "integer", "minimum": 0},
+    "edge_count": {"type": "integer", "minimum": 0},
+    "exact_id": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+    "terms": {"$ref": "#/$defs/nodeLists"},
+    "tags": {"$ref": "#/$defs/nodeLists"},
+    "types": {"$ref": "#/$defs/nodeLists"},
+    "outgoing": {"$ref": "#/$defs/offsetLists"},
+    "incoming": {"$ref": "#/$defs/offsetLists"}
+  },
+  "$defs": {
+    "nodeLists": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "uniqueItems": true,
+        "items": {"type": "string"}
+      }
+    },
+    "offsetLists": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "uniqueItems": true,
+        "items": {"type": "integer", "minimum": 0}
+      }
+    }
+  },
+  "additionalProperties": false
+}
