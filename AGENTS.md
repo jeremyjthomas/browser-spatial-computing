@@ -114,6 +114,15 @@ python3 scripts/evaluate_principles.py path/to/implementation-manifest.json \
 python3 scripts/validate_agent_docs.py
 ```
 
+The optional Cosmos GL reference explorer has an isolated Node 20.19+ toolchain:
+
+```bash
+cd examples/cosmos-graph-explorer
+npm ci
+npm run check
+npm audit --omit=dev
+```
+
 ## Definition of done
 
 - The smallest correct source of truth was changed; generated artifacts were rebuilt rather than hand-edited.

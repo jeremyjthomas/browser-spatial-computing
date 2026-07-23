@@ -13,13 +13,15 @@ This repository includes:
 - a generated knowledge graph with 551 typed nodes and 1,607 typed edges;
 - a compact retrieval index for exact lookup, concept search, filters, neighborhoods, and semantic paths;
 - a manifest-driven principles evaluator with conservative source diagnostics;
+- an optional Cosmos GL reference explorer with an equivalent semantic DOM
+  projection and intent-loaded WebGL;
 - three runtime levers—visual richness, active-frame capacity, and loading horizon—with efficient, balanced, and cinematic presets;
 - shared Codex, Claude Code, portable skill, and design-system entry points;
 - schemas, examples, tests, and continuous integrity checks.
 
 ## Start here
 
-No dependencies are required for the included tools; Python 3.10+ is enough.
+No dependencies are required for the core tools; Python 3.10+ is enough.
 
 ```bash
 python3 scripts/query_graph.py search "active frame capacity"
@@ -39,6 +41,29 @@ spatial-foundation evaluate examples/implementation-manifest.example.json
 ```
 
 All commands emit JSON so an agent can consume the result directly.
+
+## Explore the graph visually
+
+The optional [Cosmos GL explorer](examples/cosmos-graph-explorer/README.md)
+turns the committed graph and retrieval index into a locally runnable reference
+interface:
+
+```bash
+cd examples/cosmos-graph-explorer
+npm ci
+npm run dev
+```
+
+Search, stable-ID selection, provenance, and typed incoming/outgoing
+relationships are semantic HTML and work before graphics load. Cosmos GL is
+dynamically imported only after `Open graph`; closing the graph destroys its
+WebGL resources without changing query or selection state. The narrow and
+reduced-motion views preserve the same relationship records, and WebGL failure
+leaves the DOM workflow intact.
+
+The explorer does not make layout coordinates canonical, edit generated
+artifacts, or replace the CLI. It is a reference projection for understanding
+the existing 551-node/1,607-edge graph.
 
 ## AI entry points
 
@@ -118,7 +143,7 @@ foundation/  canonical AI contract, schema, and resumable build state
 knowledge/   generated graph and compact retrieval index
 docs/        human principles, architecture, evaluator, and PDF book
 schemas/     evaluator and graph interchange contracts
-examples/    implementation manifest and generated evaluation report
+examples/    manifests, evaluation output, and optional Cosmos GL explorer
 src/         dependency-free graph and evaluation library
 scripts/     direct command-line entry points
 tests/       graph, retrieval, evaluator, agent-contract, and diagnostic fixtures

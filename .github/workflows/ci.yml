@@ -32,3 +32,22 @@ jobs:
         run: python scripts/evaluate_principles.py examples/implementation-manifest.example.json --repo tests/fixtures/problematic_runtime --output /tmp/evaluation-report.json
       - name: Validate every JSON file parses
         run: python -c 'import json,pathlib; [json.loads(p.read_text()) for p in pathlib.Path(".").rglob("*.json")]'
+
+  cosmos-explorer:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: examples/cosmos-graph-explorer
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: examples/cosmos-graph-explorer/package-lock.json
+      - name: Install pinned explorer dependencies
+        run: npm ci
+      - name: Type-check, test, build, and verify dynamic Cosmos loading
+        run: npm run check
+      - name: Audit production dependencies
+        run: npm audit --omit=dev

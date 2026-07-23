@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+- Added an optional Cosmos GL knowledge-graph explorer with retrieval-index
+  search parity, typed semantic relationship records, intent-loaded WebGL,
+  deterministic reduced-motion layout, and explicit renderer cleanup.
+- Added TypeScript tests, production bundle assertions, dependency audit
+  coverage, and CI validation for the explorer without changing the
+  dependency-free Python core.
+
 ## 0.1.1 — 2026-07-20
 
 - Added shared `AGENTS.md` and `CLAUDE.md` repository instructions.
