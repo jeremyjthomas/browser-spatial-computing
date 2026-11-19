@@ -121,6 +121,25 @@ uses a static deterministic layout and zero-duration programmatic view changes.
 This example provides evidence for its bounded behavior. It is not a blanket
 conformance claim for every Browser Spatial Computing class or acceptance test.
 
+## Validation baseline (July 23, 2026)
+
+At the baseline commit, a rendered 390 × 844 CSS-pixel viewport showed no
+horizontal overflow and primary controls at least 44 CSS pixels tall. The
+semantic inspector worked before opening the graph. Closing the graph removed
+the canvas, kept selection, and returned focus to **Open graph**. The observed
+desktop, narrow, graph-open, graph-close, selection and keyboard checks logged
+no console warnings or errors.
+
+Rendered QA led to a deterministic static layout instead of the planned
+bounded force simulation, keeping the fitted overview legible and idle.
+The browser did not support reduced-motion or unavailable-WebGL emulation;
+those recovery paths were checked with automated adapter and DOM integration
+tests, not observed on hardware. These are dated observations, not claims
+about the current build. The initial JavaScript entry was 17,511 bytes; the
+467,029-byte Cosmos entry was loaded separately.
+
+[Original implementation plan and evidence at the baseline commit](https://github.com/jeremyjthomas/browser-spatial-computing/blob/3eb5fc6180223f27b27cf0924d6a262a7b0b10ea/plans/2026-07-23-cosmos-gl-knowledge-graph-explorer.md).
+
 ## Dependency license
 
 Cosmos GL and `gl-bench` are MIT licensed. This repository currently grants no
